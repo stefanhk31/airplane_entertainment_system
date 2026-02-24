@@ -6,6 +6,7 @@ import com.example.airplane_entertainment_system.presentation.viewmodels.FlightL
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertIs
+import kotlin.test.assertTrue
 
 class FlightListViewModelTest {
 
@@ -23,8 +24,8 @@ class FlightListViewModelTest {
             // Next state should be Success with flights
             val successState = uiStateTurbine.awaitItem()
             assertIs<FlightListUiState.Success>(successState)
-            assert(successState.flights.size == 2)
-            assert(successState.flights[0].flightNumber == "TEST101")
+            assertTrue(successState.flights.size == 2)
+            assertTrue(successState.flights[0].flightNumber == "TEST101")
 
             uiStateTurbine.cancel()
         }
@@ -44,7 +45,7 @@ class FlightListViewModelTest {
             // Next state should be Error
             val errorState = uiStateTurbine.awaitItem()
             assertIs<FlightListUiState.Error>(errorState)
-            assert(errorState.message.isNotEmpty())
+            assertTrue(errorState.message.isNotEmpty())
 
             uiStateTurbine.cancel()
         }

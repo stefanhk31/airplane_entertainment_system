@@ -53,7 +53,7 @@ fun FlightCard(
             }
 
             // Route information
-            RouteInfo(departure = flight.departure, arrival = flight.arrival)
+            FlightRouteInfo(departure = flight.departure, arrival = flight.arrival)
 
             // Additional info
             Row(
@@ -71,7 +71,7 @@ fun FlightCard(
 }
 
 @Composable
-fun RouteInfo(
+fun FlightRouteInfo(
     departure: AirportInfo,
     arrival: AirportInfo,
     modifier: Modifier = Modifier

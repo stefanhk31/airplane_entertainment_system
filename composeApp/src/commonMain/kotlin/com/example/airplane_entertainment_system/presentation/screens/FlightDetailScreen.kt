@@ -22,7 +22,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.airplane_entertainment_system.data.remote.FlightApiService
 import com.example.airplane_entertainment_system.data.remote.MockFlightApiClient
 import com.example.airplane_entertainment_system.data.repositories.FlightRepositoryImpl
-import com.example.airplane_entertainment_system.presentation.components.RouteInfo
+import com.example.airplane_entertainment_system.presentation.components.FlightRouteInfo
 import com.example.airplane_entertainment_system.presentation.state.FlightDetailUiState
 import com.example.airplane_entertainment_system.presentation.viewmodels.FlightDetailViewModel
 
@@ -89,7 +89,7 @@ fun FlightDetailScreen(
                         )
 
                         // Route
-                        RouteInfo(
+                        FlightRouteInfo(
                             departure = flight.departure,
                             arrival = flight.arrival,
                             modifier = Modifier.padding(bottom = 24.dp)

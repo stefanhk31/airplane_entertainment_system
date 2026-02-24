@@ -1,11 +1,10 @@
 package com.example.airplane_entertainment_system.presentation.screens
 
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.airplane_entertainment_system.domain.models.Flight
 import com.example.airplane_entertainment_system.presentation.components.AirportRow
 import com.example.airplane_entertainment_system.presentation.components.FlightCard
-import com.example.airplane_entertainment_system.presentation.components.RouteInfo
+import com.example.airplane_entertainment_system.presentation.components.FlightRouteInfo
 import com.example.airplane_entertainment_system.viewmodels.TestFlightData
 
 @Preview
@@ -31,7 +30,7 @@ fun FlightCardLoadingPreview() {
 @Preview
 @Composable
 fun RouteInfoPreview() {
-    RouteInfo(
+    FlightRouteInfo(
         departure = TestFlightData.testFlight.departure,
         arrival = TestFlightData.testFlight.arrival
     )

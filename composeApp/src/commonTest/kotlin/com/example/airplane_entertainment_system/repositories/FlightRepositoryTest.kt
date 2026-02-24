@@ -6,6 +6,7 @@ import com.example.airplane_entertainment_system.viewmodels.MockFlightRepository
 import com.example.airplane_entertainment_system.viewmodels.TestFlightData
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class FlightRepositoryTest {
@@ -20,7 +21,7 @@ class FlightRepositoryTest {
             // Should emit success result
             val result = getFlightsTurbine.awaitItem()
             assertTrue(result.isSuccess)
-            assertTrue(result.getOrNull()?.size == 2)
+            assertEquals(result.getOrNull()?.size,2)
 
             getFlightsTurbine.cancel()
         }
@@ -52,8 +53,8 @@ class FlightRepositoryTest {
             val result = getFlightTurbine.awaitItem()
             assertTrue(result.isSuccess)
             val flight = result.getOrNull()
-            assertTrue(flight?.id == "1")
-            assertTrue(flight?.flightNumber == "TEST101")
+            assertEquals(flight?.id, "1")
+            assertEquals(flight?.flightNumber, "TEST101")
 
             getFlightTurbine.cancel()
         }

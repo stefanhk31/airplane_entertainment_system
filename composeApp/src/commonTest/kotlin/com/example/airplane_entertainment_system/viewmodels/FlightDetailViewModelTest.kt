@@ -5,7 +5,10 @@ import com.example.airplane_entertainment_system.presentation.state.FlightDetail
 import com.example.airplane_entertainment_system.presentation.viewmodels.FlightDetailViewModel
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
+import kotlin.test.assertContains
+import kotlin.test.assertEquals
 import kotlin.test.assertIs
+import kotlin.test.assertTrue
 
 class FlightDetailViewModelTest {
 
@@ -29,8 +32,8 @@ class FlightDetailViewModelTest {
             // Next state should be Success with flight
             val successState = uiStateTurbine.awaitItem()
             assertIs<FlightDetailUiState.Success>(successState)
-            assert(successState.flight.flightNumber == "TEST101")
-            assert(successState.flight.id == "1")
+            assertEquals(successState.flight.flightNumber, "TEST101")
+            assertEquals(successState.flight.id , "1")
 
             uiStateTurbine.cancel()
         }
@@ -56,7 +59,7 @@ class FlightDetailViewModelTest {
             // Next state should be Error
             val errorState = uiStateTurbine.awaitItem()
             assertIs<FlightDetailUiState.Error>(errorState)
-            assert(errorState.message.contains("not found", ignoreCase = true))
+            assertContains(errorState.message, "not found", ignoreCase = true)
 
             uiStateTurbine.cancel()
         }
