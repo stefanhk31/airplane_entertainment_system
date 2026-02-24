@@ -7,30 +7,28 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.example.airplane_entertainment_system.presentation.screens.FlightDetailScreen
 import com.example.airplane_entertainment_system.presentation.screens.FlightListScreen
-import kotlin.reflect.typeOf
 
 @Composable
 fun AppNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = NavRoutes.FlightList.route
+        startDestination = FlightListRoute
     ) {
-        composable(NavRoutes.FlightList.route) {
+        composable<FlightListRoute> {
             FlightListScreen(
                 onFlightSelected = { flightId ->
-                    navController.navigate("${NavRoutes.FlightDetail.route}/$flightId")
+                    navController.navigate(FlightDetailRoute(flightId = flightId))
                 }
             )
         }
 
-        composable(
-            route = "${NavRoutes.FlightDetail.route}/{${NavRoutes.FlightDetail.flightIdArg}}"
-        ) { backStackEntry ->
-            val flightId = backStackEntry.arguments?.getString(NavRoutes.FlightDetail.flightIdArg) ?: ""
+        composable<FlightDetailRoute> { backStackEntry ->
+            val route = backStackEntry.toRoute<FlightDetailRoute>()
             FlightDetailScreen(
-                flightId = flightId,
+                flightId = route.flightId,
                 onNavigateBack = { navController.popBackStack() }
             )
         }
     }
 }
+
